@@ -3,7 +3,7 @@ import Character from './character.js';
 export default class Daemon extends Character {
   constructor(name, type) {
     super(name, type);
-    this.attack = 10;
-    this.defence = 40;
+    super.attack = 10;
+    super.defence = 40;
   }
 }
