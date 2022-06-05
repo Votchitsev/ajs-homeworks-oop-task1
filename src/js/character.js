@@ -43,4 +43,12 @@ export default class Character {
     }
     throw new Error("Can't level up who was dead");
   }
+
+  damage(points) {
+    this.health -= points * (1 - this.defence / 100);
+
+    if (this.health < 0) {
+      this.helth = 0;
+    }
+  }
 }
