@@ -1,3 +1,11 @@
+function checkName(name) {
+  if (typeof name === 'string' && name.length >= 2 && name.length <= 10) {
+    return name;
+  }
+
+  throw new Error("Name not a string or length  doesn't match");
+}
+
 export default class Character {
   #characterTypes = [
     'Bowerman',
@@ -9,20 +17,12 @@ export default class Character {
   ];
 
   constructor(name, type) {
-    this.name = this.#checkName(name);
+    this.name = checkName(name);
     this.type = this.#checkType(type);
     this.health = 100;
     this.level = 1;
     this.attack = null;
     this.defence = null;
-  }
-
-  #checkName(name) {
-    if (typeof name === 'string' && name.length >= 2 && name.length <= 10) {
-      return name;
-    }
-
-    throw new Error("Name not a string or length  doesn't match");
   }
 
   #checkType(type) {
@@ -34,7 +34,7 @@ export default class Character {
   }
 
   levelUp() {
-    if (this.health !== 0) {
+    if (this.health > 0) {
       this.level += 1;
       this.attack *= 1.2;
       this.defence *= 1.2;
@@ -48,7 +48,7 @@ export default class Character {
     this.health -= points * (1 - this.defence / 100);
 
     if (this.health < 0) {
-      this.helth = 0;
+      this.health = 0;
     }
   }
 }
